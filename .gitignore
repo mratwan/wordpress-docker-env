@@ -4,6 +4,10 @@ mariadb/logs
 redis
 nginx/certs/*
 
+# wordpress
+wordpress
+!wordpress/README.md
+
 # environments
 .env
 
