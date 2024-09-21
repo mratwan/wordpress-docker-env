@@ -1,0 +1,14 @@
+# Services
+mariadb
+redis
+nginx/certs/*
+
+# environments
+.env
+
+# OS Files
+.DS_Store
+
+# IDE Files
+.idea
+.vscode
