@@ -12,7 +12,17 @@ RUN chown wp:wp /var/www/html
 
 WORKDIR /var/www/html
 
-RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+# Update apk and install dependencies
+RUN apk update && apk add \
+    libzip-dev \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    libwebp-dev \
+    && docker-php-ext-configure zip \
+    && docker-php-ext-install zip \
+    && docker-php-ext-configure gd --with-jpeg --with-webp \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
